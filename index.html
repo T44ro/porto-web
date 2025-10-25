@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M. Adnan | Creative Engineer</title>
+    <!-- Memuat Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Konfigurasi Palet Warna Kustom */
+        :root {
+            --color-primary: #0F0F1A; /* Deep Navy/Charcoal Black */
+            --color-accent: #00FFFF;  /* Neon Electric Blue */
+            --color-text: #FFFFFF;    /* White */
+            --color-secondary: #D1D1D1; /* Light Gray */
+        }
+        
+        /* Font utama Inter */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-primary);
+            color: var(--color-text);
+            scroll-behavior: smooth;
+        }
+
+        /* Styling Neon Glitch Effect (Custom) */
+        .neon-text {
+            color: var(--color-text);
+            text-shadow: 0 0 5px var(--color-accent), 0 0 10px var(--color-accent);
+            animation: flicker 4s infinite alternate;
+            letter-spacing: 0.05em;
+        }
+
+        .neon-subtitle {
+            color: var(--color-accent);
+            text-shadow: 0 0 2px var(--color-accent);
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        /* Animasi Glitch */
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                text-shadow:
+                    0 0 4px var(--color-accent),
+                    0 0 11px var(--color-accent),
+                    0 0 19px var(--color-accent),
+                    0 0 40px rgba(0, 255, 255, 0.4);
+            }
+            20%, 24%, 55% {        
+                text-shadow: none;
+            }
+        }
+
+        /* Animasi Pulse untuk Subtitle */
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        /* Styling Neon Button Glow */
+        .neon-button {
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            border: 2px solid var(--color-accent);
+        }
+
+        .neon-button:hover {
+            background-color: var(--color-accent);
+            color: var(--color-primary);
+            box-shadow: 0 0 20px var(--color-accent), 0 0 30px var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        /* Animasi Bumper/Intro Visual - Contoh Sederhana */
+        #intro-visual {
+            opacity: 0;
+            transform: scale(0.8);
+            animation: intro-fade-in 1s ease-out 0.5s forwards;
+        }
+
+        @keyframes intro-fade-in {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Styling untuk Navigasi Sticky */
+        .sticky-nav {
+            backdrop-filter: blur(10px);
+            background-color: rgba(15, 15, 26, 0.8); /* Semi-transparent background */
+        }
+
+        /* Styling kustom untuk hover efek pada kartu proyek */
+        .project-card-image {
+            transition: transform 0.5s ease;
+        }
+        .project-card:hover .project-card-image {
+            transform: scale(1.05); /* Zoom in saat hover */
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen">
+
+    <!-- Navigasi Minimalis dan Sticky -->
+    <nav id="navbar" class="sticky-nav fixed top-0 left-0 right-0 z-50 p-4 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Logo/Nama -->
+            <a href="#home" class="text-xl font-extrabold text-white tracking-widest hover:text-cyan-400 transition">
+                <span class="text-cyan-400">MY PORTO</span>.DEV
+            </a>
+            <!-- Menu Navigasi -->
+            <div class="space-x-8 text-sm hidden sm:block">
+                <a href="#portfolio" class="text-gray-300 hover:text-cyan-400 transition">Portofolio</a>
+                <a href="#skills" class="text-gray-300 hover:text-cyan-400 transition">Keahlian</a>
+                <a href="#experience" class="text-gray-300 hover:text-cyan-400 transition">Pengalaman</a>
+                <a href="#contact" class="text-gray-300 hover:text-cyan-400 transition">Kontak</a>
+            </div>
+            <!-- Tombol Mobile Menu (Hidden) -->
+            <button id="menu-btn" class="sm:hidden p-2 rounded-lg hover:bg-gray-800 transition">
+                <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Bagian 1: HOME / HERO SECTION -->
+    <section id="home" class="min-h-screen flex items-center justify-center text-center p-4 pt-20">
+        <div class="max-w-4xl mx-auto space-y-8" id="intro-visual">
+            
+            <!-- Elemen Visual Hero (Bisa diganti dengan kanvas three.js atau lottie/video) -->
+            <div class="text-7xl sm:text-10xl font-extrabold mb-4">
+                <h1 class="neon-text">PORTO ADNAN</h1>
+            </div>
+
+            <!-- Subtitle Dinamis -->
+            <p class="text-xl sm:text-3xl font-medium uppercase tracking-wider neon-subtitle">
+                The Multimedia Architect / Creative Engineer
+            </p>
+            
+            <!-- Keahlian Utama dari CV -->
+            <p class="text-lg sm:text-xl text-gray-400 font-light max-w-2xl mx-auto pt-4">
+                Grafik Designer, Motion Grafik, Video Editor, &amp; Software Developer
+            </p>
+
+            <!-- CTA Utama (Call to Action) -->
+            <a href="#portfolio" class="inline-block px-10 py-4 mt-8 text-base font-semibold uppercase rounded-lg neon-button bg-transparent text-white">
+                EXPLORE PROJECTS
+            </a>
+            
+            <!-- Sosial Media Kontak Cepat -->
+            <div class="flex justify-center space-x-6 pt-12 text-2xl">
+                <!-- Ikon Fiktif untuk Ilustrasi. Ganti dengan ikon font-awesome atau lucide -->
+                <a href="https://www.linkedin.com/in/m-adnan-abdu-rafi-a-9883032a2" target="_blank" class="text-gray-500 hover:text-cyan-400 transition duration-300" title="LinkedIn">
+                    <!-- Icon LinkedIn (Placeholder SVG) -->
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.518-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <a href="https://instagram.com/muhadnan797" target="_blank" class="text-gray-500 hover:text-cyan-400 transition duration-300" title="Instagram">
+                    <!-- Icon Instagram (Placeholder SVG) -->
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.645.07 4.849 0 3.205-.012 3.585-.07 4.85-.148 3.228-1.669 4.749-4.919 4.919-1.265.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.848.149-3.227 1.669-4.746 4.92-4.918 1.264-.057 1.644-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.204-6.78 2.625-6.989 6.984-.058 1.27-.072 1.678-.072 4.948 0 3.27.014 3.678.072 4.947.203 4.358 2.624 6.78 6.989 6.984 1.27.059 1.678.072 4.947.072 3.27 0 3.678-.014 4.947-.072 4.354-.204 6.78-2.627 6.984-6.984.059-1.269.073-1.678.073-4.948 0-3.27-.014-3.678-.073-4.947-.196-4.354-2.624-6.78-6.984-6.989-1.27-.058-1.678-.072-4.947-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.442.645-1.442 1.44s.646 1.44 1.442 1.44c.795 0 1.44-.645 1.44-1.44s-.645-1.44-1.44-1.44z"/></svg>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Bagian 2: PORTOFOLIO (Konten placeholder) -->
+    <section id="portfolio" class="py-20 px-4 max-w-7xl mx-auto">
+        <h2 class="text-4xl font-extrabold text-white mb-10 border-b-2 border-cyan-400 inline-block pb-2">Portofolio Pilihan</h2>
+        <p class="text-gray-400 mb-12">Lihat karya saya di bidang Motion Graphics, Desain Grafis, Video Production, dan UI/UX.</p>
+        
+        <!-- Filter Bar (Implementasi sederhana) -->
+        <div class="flex flex-wrap gap-3 mb-10">
+            <!--<button class="px-4 py-2 text-sm rounded-full bg-cyan-600 text-white font-semibold hover:bg-cyan-500 transition">Semua Proyek</button>
+            <button class="px-4 py-2 text-sm rounded-full bg-gray-800 text-gray-300 hover:bg-gray-700 transition">Motion Graphics/Video</button>
+            <button class="px-4 py-2 text-sm rounded-full bg-gray-800 text-gray-300 hover:bg-gray-700 transition">Graphic Design</button>
+            <button class="px-4 py-2 text-sm rounded-full bg-gray-800 text-gray-300 hover:bg-gray-700 transition">UI/UX & Web Dev</button>
+        </div>
+
+        <!-- Grid Karya (Implementasi Gambar/Video) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Item Proyek: Brand Identity First Step Journey (Graphic Design) -->
+            <div class="project-card rounded-xl overflow-hidden shadow-lg bg-gray-900 border border-gray-800 hover:border-cyan-400 transition duration-300">
+                <!-- Area Gambar/Preview -->
+                <div class="h-48 overflow-hidden">
+                    <!-- Ganti URL ini dengan URL gambar PNG proyek Brand Identity Anda -->
+                    <img src="aset web porto/1_ngo/Desain tanpa judul.png" 
+                         alt="Preview Brand Identity First Step Journey" 
+                         class="w-full h-full object-cover project-card-image"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/0F0F1A/D1D1D1?text=Gagal+Memuat+Gambar';"
+                    >
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-white">Brand Identity First Step Journey</h3>
+                    <p class="text-cyan-400 text-sm mb-3">Co-Founder & Head of Visual Design</p>
+                    <p class="text-gray-400 text-sm">Pembuatan SOP desain dan identitas brand, eksekusi design, dan yang utama mengarahkan anggota visual designer lain agar sesuai standar dan SOP yang telah dibuat.</p>
+                    <a href="https://www.instagram.com/firststep_journey?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="mt-4 text-cyan-400 hover:text-cyan-300 text-sm font-medium inline-block">Lihat Desain →</a>
+                </div>
+            </div>           
+
+             <!-- Item Proyek: Feed Instagram FnB (Graphic Design) -->
+            <div class="project-card rounded-xl overflow-hidden shadow-lg bg-gray-900 border border-gray-800 hover:border-cyan-400 transition duration-300">
+                <!-- Area Gambar/Preview -->
+                <div class="h-48 overflow-hidden">
+                    <!-- Ganti URL ini dengan URL gambar PNG proyek Brand Identity Anda -->
+                    <img src="aset web porto/2_agency/Desain tanpa judul.png" 
+                         alt="Preview design FnB" 
+                         class="w-full h-full object-cover project-card-image"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/0F0F1A/D1D1D1?text=Gagal+Memuat+Gambar';"
+                    >
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-white">Product Photografer & Designer</h3>
+                    <p class="text-cyan-400 text-sm mb-3">Digital Agency</p>
+                    <p class="text-gray-400 text-sm">Pengambilan foto produk dan pembuatan design untuk feed ig.</p>
+                    <a href="https://drive.google.com/drive/folders/1z68avwoXVGXYa8wFJrMW1EuVWrZIKgml?usp=drive_link" class="mt-4 text-cyan-400 hover:text-cyan-300 text-sm font-medium inline-block">Lihat Desain →</a>
+                </div>
+            </div>
+
+            <!-- Item Proyek: Proyek Freelance (Video/Motion) -->
+            <div class="project-card rounded-xl overflow-hidden shadow-lg bg-gray-900 border border-gray-800 hover:border-cyan-400 transition duration-300">
+                 <!-- Area Gambar/Preview -->
+                <div class="h-48 overflow-hidden">
+                    <!-- Ganti URL ini dengan URL thumbnail video atau GIF motion graphic Anda -->
+                    <img src="aset web porto/5_freelance/Screenshot 2025-10-25 105900.png" 
+                         alt="Proyek Freelance" 
+                         class="w-full h-full object-cover project-card-image"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/0F0F1A/D1D1D1?text=Gagal+Memuat+Gambar';"
+                    >
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-white">Freelance Project</h3>
+                    <p class="text-cyan-400 text-sm mb-3">Grafik/motion designer, video Producer & Editor</p>
+                    <p class="text-gray-400 text-sm">Menyediakan jasa terkait media diital.</p>
+                    <a href="https://drive.google.com/drive/folders/1CyH8GcktKUUIG1K-j6DoYgis2AVTOFxJ?usp=drive_link" class="mt-4 text-cyan-400 hover:text-cyan-300 text-sm font-medium inline-block">Lihat →</a>
+                </div>
+            </div>
+
+            <!-- Item Proyek: Website Template Diskominfo (UI/UX) -->
+            <div class="project-card rounded-xl overflow-hidden shadow-lg bg-gray-900 border border-gray-800 hover:border-cyan-400 transition duration-300">
+                <!-- Area Gambar/Preview -->
+                <div class="h-48 overflow-hidden">
+                    <!-- Ganti URL ini dengan URL gambar PNG proyek UI/UX Anda -->
+                    <img src="https://placehold.co/600x400/00FFFF/0F0F1A?text=UI/UX+Diskominfo" 
+                         alt="Preview Proyek UI/UX Diskominfo" 
+                         class="w-full h-full object-cover project-card-image"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/0F0F1A/D1D1D1?text=Gagal+Memuat+Gambar';"
+                    >
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-white">Website Template Diskominfo</h3>
+                    <p class="text-cyan-400 text-sm mb-3">UI/UX Designer & Design System</p>
+                    <p class="text-gray-400 text-sm">Desain web fleksibel untuk sekolah dasar di Semarang.</p>
+                    <a href="#" class="mt-4 text-cyan-400 hover:text-cyan-300 text-sm font-medium inline-block">Lihat →</a>
+                </div>
+            </div>
+
+            <!-- Item Proyek: Koordinator DUEA 23 (Graphic Design) -->
+            <div class="project-card rounded-xl overflow-hidden shadow-lg bg-gray-900 border border-gray-800 hover:border-cyan-400 transition duration-300">
+                <!-- Area Gambar/Preview -->
+                <div class="h-48 overflow-hidden">
+                    <!-- Ganti URL ini dengan URL gambar PNG proyek Brand Identity Anda -->
+                    <img src="https://placehold.co/600x400/00FFFF/0F0F1A?text=DUEA+2023" 
+                         alt="Preview design DUEA 23" 
+                         class="w-full h-full object-cover project-card-image"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/0F0F1A/D1D1D1?text=Gagal+Memuat+Gambar';"
+                    >
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-white">Koordinator DUEA 23</h3>
+                    <p class="text-cyan-400 text-sm mb-3">Creative Media</p>
+                    <p class="text-gray-400 text-sm">Pembuatan tema dan gaya design.</p>
+                    <a href="#" class="mt-4 text-cyan-400 hover:text-cyan-300 text-sm font-medium inline-block">Lihat Desain →</a>
+                </div>
+            </div>
+
+             <!-- Item Proyek: rakernas (Video/Motion) -->
+            <div class="project-card rounded-xl overflow-hidden shadow-lg bg-gray-900 border border-gray-800 hover:border-cyan-400 transition duration-300">
+                 <!-- Area Gambar/Preview -->
+                <div class="h-48 overflow-hidden">
+                    <!-- Ganti URL ini dengan URL thumbnail video atau GIF motion graphic Anda -->
+                    <img src="https://placehold.co/600x400/FF00FF/0F0F1A?text=Visual+Rakernas" 
+                         alt="Visual rakernas" 
+                         class="w-full h-full object-cover project-card-image"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/0F0F1A/D1D1D1?text=Gagal+Memuat+Gambar';"
+                    >
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-white">Media Rakernas</h3>
+                    <p class="text-cyan-400 text-sm mb-3">Grafik/motion designer & Operator</p>
+                    <p class="text-gray-400 text-sm">Creative Media Rakernas BEM SI 2024.</p>
+                    <a href="#" class="mt-4 text-cyan-400 hover:text-cyan-300 text-sm font-medium inline-block">Lihat →</a>
+                </div>
+            </div>
+
+            <!-- Item Proyek: KMI BEM UNDIP 2024 (Video/Motion) -->
+            <div class="project-card rounded-xl overflow-hidden shadow-lg bg-gray-900 border border-gray-800 hover:border-cyan-400 transition duration-300">
+                 <!-- Area Gambar/Preview -->
+                <div class="h-48 overflow-hidden">
+                    <!-- Ganti URL ini dengan URL thumbnail video atau GIF motion graphic Anda -->
+                    <img src="https://placehold.co/600x400/FF00FF/0F0F1A?text=KMI+BEM+UNDIP" 
+                         alt="KMI BEM Undip 24" 
+                         class="w-full h-full object-cover project-card-image"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/0F0F1A/D1D1D1?text=Gagal+Memuat+Gambar';"
+                    >
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-white">Kantor Media BEM Undip 24</h3>
+                    <p class="text-cyan-400 text-sm mb-3">Video Producer & Editor</p>
+                    <p class="text-gray-400 text-sm">Bertugas memproduksi video profil organisasi untuk BEM UNDIP 2024 dan tugas editing lainnya.</p>
+                    <a href="#" class="mt-4 text-cyan-400 hover:text-cyan-300 text-sm font-medium inline-block">Lihat →</a>
+                </div>
+            </div>
+
+             <!-- Item Proyek: Harmoni diponegoro 2023 (Video/Motion) -->
+            <div class="project-card rounded-xl overflow-hidden shadow-lg bg-gray-900 border border-gray-800 hover:border-cyan-400 transition duration-300">
+                 <!-- Area Gambar/Preview -->
+                <div class="h-48 overflow-hidden">
+                    <!-- Ganti URL ini dengan URL thumbnail video atau GIF motion graphic Anda -->
+                    <img src="https://placehold.co/600x400/FF00FF/0F0F1A?text=Bumper+Harmoni+23" 
+                         alt="Harmoni Diponegoro 2023" 
+                         class="w-full h-full object-cover project-card-image"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/0F0F1A/D1D1D1?text=Gagal+Memuat+Gambar';"
+                    >
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-white">Bumper Harmoni Diponegoro 23</h3>
+                    <p class="text-cyan-400 text-sm mb-3">Staff Media Harmoni Diponegoro 2023</p>
+                    <p class="text-gray-400 text-sm">Bertugas membuat video bumper sesuai mata acara.</p>
+                    <a href="#" class="mt-4 text-cyan-400 hover:text-cyan-300 text-sm font-medium inline-block">Lihat →</a>
+                </div>
+            </div>
+            <!-- Tambahkan lebih banyak item placeholder di sini -->
+        </div>
+    </section>
+
+    <!-- Bagian 3: SKILLS / KEAHLIAN (Konten placeholder) -->
+    <section id="skills" class="py-20 px-4 max-w-7xl mx-auto">
+        <h2 class="text-4xl font-extrabold text-white mb-10 border-b-2 border-cyan-400 inline-block pb-2">Keahlian & Toolkit</h2>
+        
+        <p class="text-xl font-semibold text-gray-300 mb-8">Hard Skills (Software & Programming)</p>
+        
+        <!-- Grid Software Skills (Visualisasi Kartu) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
+            <!-- Item Skill 1: Figma -->
+            <div class="p-4 bg-gray-900 rounded-lg text-center hover:bg-gray-800 transition duration-300 border border-transparent hover:border-cyan-400">
+                <div class="text-4xl mb-2 text-cyan-400">
+                    <!-- Icon Figma Placeholder -->
+                    <span class="font-bold">Fg</span>
+                </div>
+                <p class="text-sm font-medium">Figma (UI/UX)</p>
+            </div>
+            <!-- Item Skill 2: Premiere Pro -->
+            <div class="p-4 bg-gray-900 rounded-lg text-center hover:bg-gray-800 transition duration-300 border border-transparent hover:border-cyan-400">
+                <div class="text-4xl mb-2 text-cyan-400">
+                    <!-- Icon PP Placeholder -->
+                    <span class="font-bold">PP</span>
+                </div>
+                <p class="text-sm font-medium">Pr Pro (Video)</p>
+            </div>
+             <!-- Item Skill 3: After Effects -->
+            <div class="p-4 bg-gray-900 rounded-lg text-center hover:bg-gray-800 transition duration-300 border border-transparent hover:border-cyan-400">
+                <div class="text-4xl mb-2 text-cyan-400">
+                    <!-- Icon AE Placeholder -->
+                    <span class="font-bold">AE</span>
+                </div>
+                <p class="text-sm font-medium">AE (Motion)</p>
+            </div>
+             <!-- Item Skill 4: VS Code (Programming) -->
+            <div class="p-4 bg-gray-900 rounded-lg text-center hover:bg-gray-800 transition duration-300 border border-transparent hover:border-cyan-400">
+                <div class="text-4xl mb-2 text-cyan-400">
+                    <!-- Icon VS Code Placeholder -->
+                    <span class="font-bold">{}</span>
+                </div>
+                <p class="text-sm font-medium">VS Code (Dev)</p>
+            </div>
+             <!-- Item Skill 5: Unity (Game Dev) -->
+            <div class="p-4 bg-gray-900 rounded-lg text-center hover:bg-gray-800 transition duration-300 border border-transparent hover:border-cyan-400">
+                <div class="text-4xl mb-2 text-cyan-400">
+                    <!-- Icon Unity Placeholder -->
+                    <span class="font-bold">3D</span>
+                </div>
+                <p class="text-sm font-medium">Unity (Game)</p>
+            </div>
+            <!-- Item Skill 6: Blender -->
+            <div class="p-4 bg-gray-900 rounded-lg text-center hover:bg-gray-800 transition duration-300 border border-transparent hover:border-cyan-400">
+                <div class="text-4xl mb-2 text-cyan-400">
+                    <!-- Icon Blender Placeholder -->
+                    <span class="font-bold">Bl</span>
+                </div>
+                <p class="text-sm font-medium">Blender (3D)</p>
+            </div>
+            <!-- Tambahkan skill lain (HTML, Python, Kotlin, dll.) sesuai kebutuhan -->
+        </div>
+        
+        <p class="text-xl font-semibold text-gray-300 mb-8 mt-12">Soft Skills</p>
+        
+        <!-- Soft Skills - Menggunakan list dengan aksen neon -->
+        <ul class="grid grid-cols-2 sm:grid-cols-3 gap-y-4 gap-x-8 text-lg">
+            <li class="flex items-center text-gray-300">
+                <span class="mr-3 text-cyan-400 font-extrabold">&#9679;</span> Communication
+            </li>
+            <li class="flex items-center text-gray-300">
+                <span class="mr-3 text-cyan-400 font-extrabold">&#9679;</span> Leadership
+            </li>
+            <li class="flex items-center text-gray-300">
+                <span class="mr-3 text-cyan-400 font-extrabold">&#9679;</span> Problem Solving
+            </li>
+            <li class="flex items-center text-gray-300">
+                <span class="mr-3 text-cyan-400 font-extrabold">&#9679;</span> Adaptability
+            </li>
+            <li class="flex items-center text-gray-300">
+                <span class="mr-3 text-cyan-400 font-extrabold">&#9679;</span> Public Speaking
+            </li>
+        </ul>
+    </section>
+
+    <!-- Bagian 4: EXPERIENCE / PENGALAMAN (Konten placeholder) -->
+    <section id="experience" class="py-20 px-4 max-w-7xl mx-auto">
+        <h2 class="text-4xl font-extrabold text-white mb-16 border-b-2 border-cyan-400 inline-block pb-2">My Outstanding Experience</h2>
+        
+        <!-- Timeline Vertikal Adaptif -->
+        <div class="relative max-w-4xl mx-auto">
+            <!-- Garis Vertikal Neon -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-800 hidden sm:block">
+                <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-cyan-600 to-transparent opacity-50"></div>
+            </div>
+
+            <!-- Item Timeline Kiri / Kanan -->
+            
+            <!-- Item 1: Co-Founder & Head of Design Visual (Kanan) -->
+            <div class="mb-8 flex justify-between items-center w-full right-timeline">
+                <div class="w-full sm:w-5/12">
+                    <div class="bg-gray-900 p-6 rounded-lg shadow-xl border border-gray-800 hover:border-cyan-400 transition duration-300">
+                        <h3 class="text-xl font-bold text-white">Co-Founder & Head of Design Visual</h3>
+                        <p class="text-cyan-400 text-sm mb-2">NGO - First Step Journey</p>
+                        <p class="text-gray-400 text-sm">Membuat SOP design, brand identity, memimpin dan mengevaluasi eksekutor design.</p>
+                        <span class="text-xs text-gray-500 mt-2 block">Jun 2025 - Sekarang</span>
+                    </div>
+                </div>
+                <div class="hidden sm:block w-1/12 flex justify-center items-center">
+                    <div class="w-4 h-4 rounded-full bg-cyan-400 shadow-md shadow-cyan-500"></div>
+                </div>
+                <div class="w-full sm:w-5/12"></div>
+            </div>
+
+            <!-- Item 2: Kepala Divisi Website & Publikasi Data (Kiri) -->
+            <div class="mb-8 flex justify-between items-center w-full left-timeline">
+                 <div class="w-full sm:w-5/12"></div>
+                <div class="hidden sm:block w-1/12 flex justify-center items-center">
+                    <div class="w-4 h-4 rounded-full bg-cyan-400 shadow-md shadow-cyan-500"></div>
+                </div>
+                <div class="w-full sm:w-5/12">
+                    <div class="bg-gray-900 p-6 rounded-lg shadow-xl border border-gray-800 hover:border-cyan-400 transition duration-300">
+                        <h3 class="text-xl font-bold text-white">Kepala Divisi Website & Publikasi Data</h3>
+                        <p class="text-cyan-400 text-sm mb-2">Biro Statisitk BEM UNDIP</p>
+                        <p class="text-gray-400 text-sm">Project management pembuatan website datalake dan SOP Instagram.</p>
+                        <span class="text-xs text-gray-500 mt-2 block">Feb 2025 - Sekarang</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 3: Media Crew (Intern) - UNDIP TV (Kanan) -->
+            <div class="mb-8 flex justify-between items-center w-full right-timeline">
+                <div class="w-full sm:w-5/12">
+                    <div class="bg-gray-900 p-6 rounded-lg shadow-xl border border-gray-800 hover:border-cyan-400 transition duration-300">
+                        <h3 class="text-xl font-bold text-white">Student Media Crew </h3>
+                        <p class="text-cyan-400 text-sm mb-2">UNDIP TV</p>
+                        <p class="text-gray-400 text-sm">Video editor, desain grafis & motion, operator Vmix, dan camper untuk event resmi UNDIP.</p>
+                        <span class="text-xs text-gray-500 mt-2 block">Jul 2024 - Sekarang</span>
+                    </div>
+                </div>
+                <div class="hidden sm:block w-1/12 flex justify-center items-center">
+                    <div class="w-4 h-4 rounded-full bg-cyan-400 shadow-md shadow-cyan-500"></div>
+                </div>
+                <div class="w-full sm:w-5/12"></div>
+            </div>
+
+            <!-- Item 4: Pendidikan - Teknik Komputer UNDIP (Kiri) -->
+             <div class="mb-8 flex justify-between items-center w-full left-timeline">
+                 <div class="w-full sm:w-5/12"></div>
+                <div class="hidden sm:block w-1/12 flex justify-center items-center">
+                    <div class="w-4 h-4 rounded-full bg-cyan-400 shadow-md shadow-cyan-500"></div>
+                </div>
+                <div class="w-full sm:w-5/12">
+                    <div class="bg-gray-900 p-6 rounded-lg shadow-xl border border-gray-800 hover:border-cyan-400 transition duration-300">
+                        <h3 class="text-xl font-bold text-white">Teknik Komputer</h3>
+                        <p class="text-cyan-400 text-sm mb-2">Universitas Diponegoro</p>
+                        <p class="text-gray-400 text-sm">Mahasiswa angkatan 2023, minat besar di teknologi dan multimedia.</p>
+                        <span class="text-xs text-gray-500 mt-2 block">2023 - Sekarang</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tambahkan item timeline lain seperti Freelancer Kreatif, Keraja Praktik Diskominfo, dll. -->
+        </div>
+    </section>
+
+    <!-- Bagian 5: CONTACT / KONTAK -->
+    <section id="contact" class="py-20 px-4">
+        <div class="max-w-xl mx-auto text-center">
+            <h2 class="text-4xl font-extrabold text-white mb-4">Mari Berkolaborasi</h2>
+            <p class="text-gray-400 mb-10">Punya proyek menarik di bidang desain, motion, atau pengembangan? Hubungi saya!</p>
+            
+            <!-- Form Kontak Minimalis -->
+            <form action="#" method="POST" class="space-y-6">
+                <input type="text" placeholder="Nama Lengkap Anda" required class="w-full px-5 py-3 rounded-lg bg-gray-900 border border-gray-800 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-white placeholder-gray-500 transition duration-300">
+                <input type="email" placeholder="Alamat Email Anda" required class="w-full px-5 py-3 rounded-lg bg-gray-900 border border-gray-800 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-white placeholder-gray-500 transition duration-300">
+                <textarea rows="4" placeholder="Beritahu saya tentang proyek UI/UX, video, atau desain Anda..." required class="w-full px-5 py-3 rounded-lg bg-gray-900 border border-gray-800 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-white placeholder-gray-500 transition duration-300"></textarea>
+                
+                <!-- Tombol Submit Neon -->
+                <button type="submit" class="w-full px-6 py-3 text-lg font-semibold uppercase rounded-lg neon-button bg-transparent text-white">
+                    Kirim Pesan
+                </button>
+            </form>
+
+            <!-- Kontak Lain -->
+            <div class="mt-8 text-center">
+                <p class="text-gray-500">Atau kirimkan email langsung:</p>
+                <a href="mailto:muhadnan797@gmail.com" class="text-lg font-medium text-cyan-400 hover:text-cyan-300 transition">muhadnan797@gmail.com</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-500">
+            <p>&copy; <span id="current-year"></span> M. Adnan Abdu Rafi'a. All Rights Reserved.</p>
+            <div class="flex space-x-4 mt-4 sm:mt-0">
+                <a href="https://www.linkedin.com/in/m-adnan-abdu-rafi-a-9883032a2" target="_blank" class="hover:text-cyan-400 transition" title="LinkedIn">LinkedIn</a>
+                <a href="https://instagram.com/muhadnan797" target="_blank" class="hover:text-cyan-400 transition" title="Instagram">Instagram</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Memastikan tahun di footer selalu terbaru
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Implementasi Navigasi Mobile (sederhana, tombolnya masih tersembunyi)
+        const menuBtn = document.getElementById('menu-btn');
+        const navMenu = document.querySelector('.sm\\:hidden'); // Ganti selector jika menu mobile dibuat terpisah
+
+        // Ini hanya untuk ilustrasi, perlu menambahkan menu mobile terpisah
+
+        // Script untuk mengatur timeline di mobile (mengubah layout kiri-kanan menjadi vertikal semua)
+        if (window.innerWidth < 640) {
+            document.querySelectorAll('.left-timeline > div:first-child').forEach(el => {
+                el.classList.remove('sm:w-5/12');
+                el.classList.add('w-full');
+            });
+            document.querySelectorAll('.right-timeline > div:first-child').forEach(el => {
+                el.classList.remove('sm:w-5/12');
+                el.classList.add('w-full');
+            });
+            document.querySelectorAll('.left-timeline > div:last-child').forEach(el => {
+                el.classList.remove('sm:w-5/12');
+                el.classList.add('w-full');
+            });
+        }
+    </script>
+</body>
+</html>
